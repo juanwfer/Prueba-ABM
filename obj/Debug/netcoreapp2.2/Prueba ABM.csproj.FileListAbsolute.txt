@@ -1,0 +1,30 @@
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\bin\Debug\netcoreapp2.2\Prueba ABM.deps.json
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\bin\Debug\netcoreapp2.2\Prueba ABM.runtimeconfig.json
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\bin\Debug\netcoreapp2.2\Prueba ABM.runtimeconfig.dev.json
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\bin\Debug\netcoreapp2.2\Prueba ABM.dll
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\bin\Debug\netcoreapp2.2\Prueba ABM.pdb
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\bin\Debug\netcoreapp2.2\Prueba ABM.Views.dll
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\bin\Debug\netcoreapp2.2\Prueba ABM.Views.pdb
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Debug\netcoreapp2.2\Prueba ABM.csprojAssemblyReference.cache
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Debug\netcoreapp2.2\Prueba ABM.csproj.CoreCompileInputs.cache
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Debug\netcoreapp2.2\Prueba ABM.RazorAssemblyInfo.cache
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Debug\netcoreapp2.2\Prueba ABM.RazorAssemblyInfo.cs
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Debug\netcoreapp2.2\Prueba ABM.AssemblyInfoInputs.cache
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Debug\netcoreapp2.2\Prueba ABM.AssemblyInfo.cs
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Debug\netcoreapp2.2\Prueba ABM.TagHelpers.input.cache
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Debug\netcoreapp2.2\Prueba ABM.TagHelpers.output.cache
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Debug\netcoreapp2.2\Prueba ABM.RazorCoreGenerate.cache
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.g.cshtml.cs
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Debug\netcoreapp2.2\Razor\Views\Home\Privacy.g.cshtml.cs
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Error.g.cshtml.cs
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_CookieConsentPartial.g.cshtml.cs
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Layout.g.cshtml.cs
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.g.cshtml.cs
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Debug\netcoreapp2.2\Razor\Views\_ViewStart.g.cshtml.cs
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Debug\netcoreapp2.2\Prueba ABM.RazorTargetAssemblyInfo.cache
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Debug\netcoreapp2.2\Prueba ABM.RazorTargetAssemblyInfo.cs
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Debug\netcoreapp2.2\Prueba ABM.Views.pdb
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Debug\netcoreapp2.2\Prueba ABM.dll
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Debug\netcoreapp2.2\Prueba ABM.pdb
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Debug\netcoreapp2.2\Prueba ABM.csproj.CopyComplete
