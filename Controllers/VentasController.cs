@@ -53,7 +53,7 @@ namespace Prueba_ABM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Fecha")] Venta venta)
+        public async Task<IActionResult> Create([Bind("Id,Fecha,AutoId,ClienteId,VendedorId")] Venta venta)
         {
             if (ModelState.IsValid)
             {
