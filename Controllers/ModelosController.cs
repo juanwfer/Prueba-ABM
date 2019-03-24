@@ -24,6 +24,23 @@ namespace Prueba_ABM.Controllers
       return View(await _context.Modelo.ToListAsync());
     }
 
+    public JsonResult API()
+    {
+      var modelos = _context.Modelo
+        .Include("Marca")
+        .Select(m => new
+        {
+          m.Id,
+          nombreMarca = m.Marca.Nombre,
+          m.Nombre,
+          m.Descripcion
+        });
+
+      JsonResult test = Json(modelos);
+
+      return test;
+    }
+
     // GET: Modelos/Details/5
     public async Task<IActionResult> Details(int? id)
     {

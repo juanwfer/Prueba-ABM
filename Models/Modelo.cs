@@ -12,6 +12,7 @@ namespace Prueba_ABM.Models
 
     [ForeignKey("Marca")]
     public int MarcaId { get; set; }
+
     public virtual Marca Marca { get; set; }
   }
 }
