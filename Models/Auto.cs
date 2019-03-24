@@ -12,6 +12,8 @@ namespace Prueba_ABM.Models
     public decimal Precio { get; set; }
     public DateTime FechaAdquisicion { get; set; }
 
+    [ForeignKey("Modelo")]
+    public int ModeloId { get; set; }
     public virtual Modelo Modelo { get; set; }
   }
 }
