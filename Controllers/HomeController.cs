@@ -20,6 +20,11 @@ namespace Prueba_ABM.Controllers
       return View();
     }
 
+    public IActionResult Venta()
+    {
+      return View();
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
