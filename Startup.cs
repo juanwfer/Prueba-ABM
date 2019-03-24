@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using Prueba_ABM.Models;
 
 namespace Prueba_ABM
 {
@@ -33,6 +35,9 @@ namespace Prueba_ABM
 
 
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+        services.AddDbContext<Prueba_ABMContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("Prueba_ABMContext")));
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -7,6 +7,8 @@ namespace Prueba_ABM.Models
   public class Auto
   {
     public int Id { get; set; }
+
+    [Column(TypeName = "decimal(10,2)")]
     public decimal Precio { get; set; }
     public DateTime FechaAdquisicion { get; set; }
 
