@@ -36,9 +36,7 @@ namespace Prueba_ABM.Controllers
           m.Descripcion
         });
 
-      JsonResult test = Json(modelos);
-
-      return test;
+      return Json(modelos);
     }
 
     // GET: Modelos/Details/5
