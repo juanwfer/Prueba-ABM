@@ -10,6 +10,8 @@ namespace Prueba_ABM.Models
     public string Nombre { get; set; }
     public string Descripcion { get; set; }
 
+    [ForeignKey("Marca")]
+    public int MarcaId { get; set; }
     public virtual Marca Marca { get; set; }
   }
 }
