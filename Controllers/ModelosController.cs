@@ -86,7 +86,7 @@ namespace Prueba_ABM.Controllers
     // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Descripcion")] Modelo modelo)
+    public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Descripcion,MarcaId")] Modelo modelo)
     {
       if (id != modelo.Id)
       {

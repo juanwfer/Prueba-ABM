@@ -10,6 +10,8 @@ namespace Prueba_ABM.Models
 
     [Column(TypeName = "decimal(10,2)")]
     public decimal Precio { get; set; }
+
+    [DataType(DataType.Date)]
     public DateTime FechaAdquisicion { get; set; }
 
     [ForeignKey("Modelo")]
