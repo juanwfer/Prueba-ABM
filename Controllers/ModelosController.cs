@@ -155,7 +155,7 @@ namespace Prueba_ABM.Controllers
       var marcasQuery = from m in _context.Marca
                              orderby m.Nombre
                              select m;
-      ViewBag.MarcaID = new SelectList(marcasQuery, "MarcaId", "Nombre", selectedMarca);
+      ViewBag.DepartmentID = new SelectList(marcasQuery, "MarcaId", "Nombre", selectedMarca);
     }
   }
 }

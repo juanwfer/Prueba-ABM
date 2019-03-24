@@ -1,7 +1,7 @@
 ﻿@model Prueba_ABM.Models.Modelo
 
 @{
-  ViewBag.Title = "Create";
+  ViewData["Title"] = "Create";
 }
 
 <h1>Create</h1>
@@ -22,18 +22,10 @@
         <input asp-for="Descripcion" class="form-control" />
         <span asp-validation-for="Descripcion" class="text-danger"></span>
       </div>
-      <!--
       <div class="form-group">
         <label asp-for="MarcaId" class="control-label"></label>
+        <input asp-for="MarcaId" class="form-control" />
         <span asp-validation-for="MarcaId" class="text-danger"></span>
-      </div>
-        -->
-      <div class="form-group">
-        <label class="control-label col-md-2" for="MarcaId">Marca</label>
-        <div class="col-md-10">
-          @Html.DropDownList("MarcaId", String.Empty)
-          @Html.ValidationMessageFor(model => model.MarcaId)
-        </div>
       </div>
       <div class="form-group">
         <input type="submit" value="Create" class="btn btn-primary" />
