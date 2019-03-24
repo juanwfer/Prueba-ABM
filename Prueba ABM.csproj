@@ -6,6 +6,11 @@
     <RootNamespace>Prueba_ABM</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20190324061713_Initial.cs" />
+    <Compile Remove="Migrations\20190324061713_Initial.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />

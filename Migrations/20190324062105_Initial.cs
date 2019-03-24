@@ -41,8 +41,8 @@ namespace Prueba_ABM.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Nombre = table.Column<string>(nullable: true),
-                    Sueldo = table.Column<decimal>(nullable: false),
-                    PorcentajeComision = table.Column<decimal>(nullable: false)
+                    Sueldo = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    PorcentajeComision = table.Column<decimal>(type: "decimal(3,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -76,7 +76,7 @@ namespace Prueba_ABM.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Precio = table.Column<decimal>(nullable: false),
+                    Precio = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     FechaAdquisicion = table.Column<DateTime>(nullable: false),
                     ModeloId = table.Column<int>(nullable: true)
                 },

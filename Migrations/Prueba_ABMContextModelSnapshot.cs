@@ -29,7 +29,8 @@ namespace Prueba_ABM.Migrations
 
                     b.Property<int?>("ModeloId");
 
-                    b.Property<decimal>("Precio");
+                    b.Property<decimal>("Precio")
+                        .HasColumnType("decimal(10,2)");
 
                     b.HasKey("Id");
 
@@ -91,9 +92,11 @@ namespace Prueba_ABM.Migrations
 
                     b.Property<string>("Nombre");
 
-                    b.Property<decimal>("PorcentajeComision");
+                    b.Property<decimal>("PorcentajeComision")
+                        .HasColumnType("decimal(3,2)");
 
-                    b.Property<decimal>("Sueldo");
+                    b.Property<decimal>("Sueldo")
+                        .HasColumnType("decimal(10,2)");
 
                     b.HasKey("Id");
 
