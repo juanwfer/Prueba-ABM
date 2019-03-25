@@ -19,18 +19,20 @@
     </thead>
     <tr>
       <td></td>
-      <td><input v-model="newAuto.precio" type="number"/></td>
+      <td><input v-model="newAuto.precio" type="number" /></td>
       <td>
         <select v-model="newAuto.marca">
-          <option v-for="marca in marcas" v-bind:value="marca.id"> {{ marca.nombre }}</option>
+          <option v-for="marca in marcas" v-bind:value="marca.nombre"> {{ marca.nombre }}</option>
         </select>
       </td>
       <td>
         <select v-model="newAuto.modelo">
-          <option v-for="modelo in modelos" v-bind:value="modelo.id"> {{ modelo.nombre }} </option>
+          <option v-for="modelo in modelosFiltrados()" v-bind:value="modelo.id">
+            {{ modelo.nombre }}
+          </option>
         </select>
       </td>
-      <td><input v-model="newAuto.fecha_adquisicion" v-on:keyup.enter="agregarModelo(newModelo)"/></td>
+      <td></td>
       <td>
         <button class="btn btn-primary" v-on:click="agregarAuto(newAuto)">Agregar</button>
         <button class="btn btn-secondary">Cancelar</button>

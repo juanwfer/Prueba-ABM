@@ -14,5 +14,6 @@
     <WebStackScaffolding_DbContextTypeFullName>Prueba_ABM.Models.Prueba_ABMContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_IsViewGenerationSelected>True</WebStackScaffolding_IsViewGenerationSelected>
+    <NameOfLastUsedPublishProfile>pruebaabm - Web Deploy</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

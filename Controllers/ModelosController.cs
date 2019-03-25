@@ -32,7 +32,7 @@ namespace Prueba_ABM.Controllers
         .Select(m => new
         {
           m.Id,
-          nombreMarca = m.Marca.Nombre,
+          marca = m.Marca.Nombre,
           m.Nombre,
           m.Descripcion
         });

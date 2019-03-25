@@ -11,6 +11,13 @@ namespace Prueba_ABM.Models
     {
 
     }
+
+    public Auto(decimal precio, int modelo, DateTime fechaAdquisicion)
+    {
+      Precio = precio;
+      ModeloId = modelo;
+      FechaAdquisicion = fechaAdquisicion;
+    }
     public int Id { get; set; }
 
     [Column(TypeName = "decimal(10,2)")]

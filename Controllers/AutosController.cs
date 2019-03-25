@@ -24,20 +24,38 @@ namespace Prueba_ABM.Controllers
       return View(await _context.Auto.ToListAsync());
     }
 
-    public JsonResult API()
+    public JsonResult apiGET()
     {
       var autos = _context.Auto
         .Include("Modelo.Marca")
         .Select(a => new
         {
           a.Id,
-          nombreMarca = a.Modelo.Marca.Nombre,
-          nombreModelo = a.Modelo.Nombre,
+          marca = a.Modelo.Marca.Nombre,
+          modelo = a.Modelo.Nombre,
           a.Precio,
-          a.FechaAdquisicion
+          fecha_adquisicion = a.FechaAdquisicion
         });
 
       return Json(autos);
+    }
+
+    [HttpPost]
+    public async Task<JsonResult> apiDELETE(int id)
+    {
+      var auto = await _context.Auto.FindAsync(id);
+      _context.Auto.Remove(auto);
+      await _context.SaveChangesAsync();
+      return Json("OK");
+    }
+
+    public async Task<JsonResult> apiCREATE(decimal precio, int modelo)
+    {
+      DateTime fecha = DateTime.Now;
+      Auto auto = new Auto(precio, modelo, fecha);
+      _context.Auto.Add(auto);
+      await _context.SaveChangesAsync();
+      return Json(auto);
     }
 
     // GET: Autos/Details/5
