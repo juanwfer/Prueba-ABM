@@ -16,6 +16,7 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
   </environment>
   <link rel="stylesheet" href="~/css/site.css" />
+  <script src="~/lib/jquery/dist/jquery.min.js"></script>
 </head>
 <body>
   <header>
@@ -32,7 +33,19 @@
               <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Venta">Registrar venta</a>
             </li>
             <li>
-              <a></a>
+              <a class="nav-link text-dark" asp-area="" asp-controller="Autos" asp-action="Index">Autos</a>
+            </li>
+            <li>
+              <a class="nav-link text-dark" asp-area="" asp-controller="Modelos" asp-action="Index">Modelos</a>
+            </li>
+            <li>
+              <a class="nav-link text-dark" asp-area="" asp-controller="Marcas" asp-action="Index">Marcas</a>
+            </li>
+            <li>
+              <a class="nav-link text-dark" asp-area="" asp-controller="Vendedores" asp-action="Index">Vendedores</a>
+            </li>
+            <li>
+              <a class="nav-link text-dark" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
             </li>
           </ul>
         </div>
@@ -75,3 +88,4 @@
   @RenderSection("Scripts", required: false)
 </body>
 </html>
+<script src="~/js/site.js"></script>
