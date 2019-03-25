@@ -1,41 +1,54 @@
-﻿@model IEnumerable<Prueba_ABM.Models.Auto>
-
-@{
-    ViewData["Title"] = "Index";
+﻿@{
+  ViewData["Title"] = "Autos";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<h1>Autos en el sistema</h1>
+<br />
+<br />
+<div id="testVue">
+  <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Precio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaAdquisicion)
-            </th>
-            <th></th>
-        </tr>
+      <tr>
+        <th>ID</th>
+        <th>PRECIO</th>
+        <th>MARCA</th>
+        <th>MODELO</th>
+        <th>FECHA DE ADQUISICION</th>
+        <th>ACCIÓN</th>
+      </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Precio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaAdquisicion)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+    <tr>
+      <td></td>
+      <td><input v-model="newAuto.precio" type="number"/></td>
+      <td>
+        <select v-model="newAuto.marca">
+          <option v-for="marca in marcas" v-bind:value="marca.id"> {{ marca.nombre }}</option>
+        </select>
+      </td>
+      <td>
+        <select v-model="newAuto.modelo">
+          <option v-for="modelo in modelos" v-bind:value="modelo.id"> {{ modelo.nombre }} </option>
+        </select>
+      </td>
+      <td><input v-model="newAuto.fecha_adquisicion" v-on:keyup.enter="agregarModelo(newModelo)"/></td>
+      <td>
+        <button class="btn btn-primary" v-on:click="agregarAuto(newAuto)">Agregar</button>
+        <button class="btn btn-secondary">Cancelar</button>
+      </td>
+    </tr>
+    <tbody v-for="auto in autos">
+      <tr>
+        <td> {{ auto.id }}</td>
+        <td> {{ auto.precio }}</td>
+        <td> {{ auto.marca }}</td>
+        <td> {{ auto.modelo }}</td>
+        <td> {{ auto.fecha_adquisicion }}</td>
+        <td>
+          <button class="btn btn-outline-secondary">Editar</button>
+          <button class="btn btn-outline-primary">Detalles</button>
+          <button class="btn btn-outline-danger" v-on:click="deleteAuto(auto.id)">Eliminar</button>
+        </td>
+      </tr>
     </tbody>
-</table>
+  </table>
+</div>

@@ -6,6 +6,11 @@ namespace Prueba_ABM.Models
 {
   public class Auto
   {
+
+    public Auto()
+    {
+
+    }
     public int Id { get; set; }
 
     [Column(TypeName = "decimal(10,2)")]

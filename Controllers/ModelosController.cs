@@ -21,10 +21,11 @@ namespace Prueba_ABM.Controllers
     // GET: Modelos
     public async Task<IActionResult> Index()
     {
+      object test = await _context.Modelo.ToListAsync();
       return View(await _context.Modelo.ToListAsync());
     }
 
-    public JsonResult API()
+    public JsonResult apiGET()
     {
       var modelos = _context.Modelo
         .Include("Marca")
@@ -37,6 +38,24 @@ namespace Prueba_ABM.Controllers
         });
 
       return Json(modelos);
+    }
+
+    [HttpPost]
+    public async Task<JsonResult> apiDELETE(int id)
+    {
+      var modelo = await _context.Modelo.FindAsync(id);
+      _context.Modelo.Remove(modelo);
+      await _context.SaveChangesAsync();
+      return Json("OK");
+    }
+
+    [HttpPost]
+    public async Task<JsonResult> apiCREATE(string nombre, int marca, string descripcion="")
+    {
+      Modelo modelo = new Modelo(nombre, marca, descripcion);
+      _context.Modelo.Add(modelo);
+      await _context.SaveChangesAsync();
+      return Json(modelo);
     }
 
     // GET: Modelos/Details/5
