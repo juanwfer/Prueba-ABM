@@ -24,11 +24,29 @@ namespace Prueba_ABM.Controllers
       return View(await _context.Marca.ToListAsync());
     }
 
-    public JsonResult API()
+    public JsonResult apiGET()
     {
       var marcas = _context.Marca;
 
       return Json(marcas);
+    }
+
+    [HttpPost]
+    public async Task<JsonResult> apiDELETE(int id)
+    {
+      var marca = await _context.Marca.FindAsync(id);
+      _context.Marca.Remove(marca);
+      await _context.SaveChangesAsync();
+      return Json("OK");
+    }
+
+    [HttpPost]
+    public async Task<JsonResult> apiCREATE(string nombre)
+    {
+      Marca marca = new Marca(nombre);
+      _context.Marca.Add(marca);
+      await _context.SaveChangesAsync();
+      return Json(marca);
     }
 
     // GET: Marcas/Details/5

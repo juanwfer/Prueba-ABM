@@ -16,9 +16,9 @@
     </thead>
     <tr>
       <td></td>
-      <td><input /></td>
+      <td><input v-model="newMarca" v-on:keyup.enter="agregarMarca(newMarca)"/></td>
       <td>
-        <button class="btn btn-primary">Agregar</button>
+        <button class="btn btn-primary" v-on:click="agregarMarca(newMarca)">Agregar</button>
         <button class="btn btn-secondary">Cancelar</button>
       </td>
     </tr>
@@ -29,7 +29,7 @@
         <td>
           <button class="btn btn-outline-secondary">Editar</button>
           <button class="btn btn-outline-primary">Detalles</button>
-          <button class="btn btn-outline-danger">Eliminar</button>
+          <button class="btn btn-outline-danger" v-on:click="deleteMarca(marca.id)">Eliminar</button>
         </td>
       </tr>
     </tbody>
