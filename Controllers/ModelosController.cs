@@ -33,6 +33,7 @@ namespace Prueba_ABM.Controllers
         {
           m.Id,
           marca = m.Marca.Nombre,
+          marcaId = m.Marca.Id,
           m.Nombre,
           m.Descripcion
         });
@@ -48,6 +49,7 @@ namespace Prueba_ABM.Controllers
         {
           m.Id,
           marca = m.Marca.Nombre,
+          marcaId = m.Marca.Id,
           m.Nombre,
           m.Descripcion
         }).Where(m => m.Id == id);
@@ -65,7 +67,7 @@ namespace Prueba_ABM.Controllers
     }
 
     [HttpPost]
-    public async Task<JsonResult> apiCREATE(string nombre, int marca, string descripcion="")
+    public async Task<JsonResult> apiCREATE(string nombre, int marca, string descripcion = "")
     {
       Modelo modelo = new Modelo(nombre, marca, descripcion);
       _context.Modelo.Add(modelo);
@@ -76,6 +78,38 @@ namespace Prueba_ABM.Controllers
       return jsmodelo;
     }
 
+    [HttpPost]
+    public async Task<JsonResult> apiEDIT(int identificador, string nombre, int marca, string descripcion = "")
+    {
+
+      var modelo = await _context.Modelo
+          .FirstOrDefaultAsync(m => m.Id == identificador);
+
+      modelo.Nombre = nombre;
+      modelo.MarcaId = marca;
+      modelo.Descripcion = descripcion;
+
+      //Falta validacion de backend
+
+      try
+      {
+        _context.Update(modelo);
+        await _context.SaveChangesAsync();
+      }
+      catch (DbUpdateConcurrencyException)
+      {
+        if (!ModeloExists(modelo.Id))
+        {
+          return Json(NotFound());
+        }
+        else
+        {
+          throw;
+        }
+      }
+
+      return apiGETUNIQUE(identificador);
+    }
     // GET: Modelos/Details/5
     public async Task<IActionResult> Details(int? id)
     {
@@ -205,8 +239,8 @@ namespace Prueba_ABM.Controllers
     private void PopulateMarcasDropDownList(object selectedMarca = null)
     {
       var marcasQuery = from m in _context.Marca
-                             orderby m.Nombre
-                             select m;
+                        orderby m.Nombre
+                        select m;
       ViewBag.DepartmentID = new SelectList(marcasQuery, "MarcaId", "Nombre", selectedMarca);
     }
   }

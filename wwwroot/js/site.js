@@ -9,14 +9,33 @@ var data = {
     marcas: [],
     modelos: [],
     autos: [],
+
+    editMode: false,
+
     newMarca: '',
+    editMarca: '',
+
     newModelo: {
+        nombre: '',
+        marca: '',
+        descripcion: '',
+        editando: false
+    },
+
+    editModelo: {
         nombre: '',
         marca: '',
         descripcion: ''
     },
 
     newAuto: {
+        modelo: '',
+        marca: '',
+        precio: '',
+        editando: false
+    },
+
+    editAuto: {
         modelo: '',
         marca: '',
         precio: ''
@@ -28,6 +47,11 @@ var vm = new Vue({
     data: data,
 
     methods: {
+
+
+        toggleEditModelo: toggleEditModelo,
+
+
         getMarcas: getMarcas,
         getMarca: getMarca,
         deleteMarca: deleteMarca,
@@ -37,6 +61,7 @@ var vm = new Vue({
         getModelo: getModelo,
         deleteModelo: deleteModelo,
         agregarModelo: agregarModelo,
+        editarModelo: editarModelo,
 
         getAutos: getAutos,
         getAuto: getAuto,
@@ -50,6 +75,13 @@ var vm = new Vue({
         }
     }
 })
+
+function toggleEditModelo(modelo) {
+    data.editMode = !data.editMode
+    if (data.editMode) {
+        Object.assign(data.editModelo, modelo)
+    }
+}
 
 function cancelarNuevo() {
     data.newMarca = ''
@@ -143,7 +175,8 @@ function agregarAuto(newAuto) {
             data.newAuto = {
                 precio: '',
                 modelo: '',
-                marca: ''
+                marca: '',
+                editando: false
             }
         },
         error: function (er) {
@@ -231,7 +264,8 @@ function agregarModelo(newModelo) {
             data.newModelo = {
                 nombre: '',
                 marca: '',
-                descripcion: ''
+                descripcion: '',
+                editando: false
             }
         },
         error: function (er) {
@@ -239,6 +273,24 @@ function agregarModelo(newModelo) {
         },
         complete: function (modelo) {
 
+        }
+    })
+}
+
+function editarModelo(modelo) {
+    $.ajax({
+        url: base_url + "/Modelos/apiEDIT?identificador=" + modelo.id + "&nombre=" + modelo.nombre + "&marca=" + modelo.marcaId + "&descripcion=" + modelo.descripcion,
+        method: 'POST',
+        async: true,
+        dataType: 'json',
+        success: function (modelo) {
+            data.editMode = false;
+        },
+        error: function (er) {
+            console.log("ERROR", er)
+        },
+        complete: function (modelo) {
+            getModelos()
         }
     })
 }
