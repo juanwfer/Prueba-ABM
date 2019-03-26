@@ -35,7 +35,7 @@
       <td></td>
       <td>
         <button class="btn btn-primary" v-on:click="agregarAuto(newAuto)">Agregar</button>
-        <button class="btn btn-secondary">Cancelar</button>
+        <button class="btn btn-secondary" v-on:click="cancelarNuevo()">Cancelar</button>
       </td>
     </tr>
     <tbody v-for="auto in autos">
@@ -47,7 +47,7 @@
         <td> {{ auto.fecha_adquisicion }}</td>
         <td>
           <button class="btn btn-outline-secondary">Editar</button>
-          <button class="btn btn-outline-primary">Detalles</button>
+          <button class="btn btn-outline-primary" v-on:click="getAuto(auto.id)">Detalles</button>
           <button class="btn btn-outline-danger" v-on:click="deleteAuto(auto.id)">Eliminar</button>
         </td>
       </tr>

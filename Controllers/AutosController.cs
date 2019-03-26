@@ -40,6 +40,27 @@ namespace Prueba_ABM.Controllers
       return Json(autos);
     }
 
+    public async Task<JsonResult> apiGETUNIQUE(int id)
+    {
+      var auto = _context.Auto
+        .Include("Modelo.Marca")
+        .Select(a => new
+        {
+          a.Id,
+          marca = a.Modelo.Marca.Nombre,
+          modelo = a.Modelo.Nombre,
+          a.Precio,
+          fecha_adquisicion = a.FechaAdquisicion
+        }).Where(a => a.Id == id);
+
+      if (auto == null)
+      {
+        return Json(NotFound());
+      }
+
+      return Json(auto);
+    }
+
     [HttpPost]
     public async Task<JsonResult> apiDELETE(int id)
     {
@@ -55,7 +76,10 @@ namespace Prueba_ABM.Controllers
       Auto auto = new Auto(precio, modelo, fecha);
       _context.Auto.Add(auto);
       await _context.SaveChangesAsync();
-      return Json(auto);
+
+      JsonResult jsauto = await apiGETUNIQUE(auto.Id);
+
+      return jsauto;
     }
 
     // GET: Autos/Details/5

@@ -19,7 +19,7 @@
       <td><input v-model="newMarca" v-on:keyup.enter="agregarMarca(newMarca)"/></td>
       <td>
         <button class="btn btn-primary" v-on:click="agregarMarca(newMarca)">Agregar</button>
-        <button class="btn btn-secondary">Cancelar</button>
+        <button class="btn btn-secondary" v-on:click="cancelarNuevo()">Cancelar</button>
       </td>
     </tr>
     <tbody v-for="marca in marcas">
@@ -28,7 +28,7 @@
         <td> {{ marca.nombre }} </td>
         <td>
           <button class="btn btn-outline-secondary">Editar</button>
-          <button class="btn btn-outline-primary">Detalles</button>
+          <button class="btn btn-outline-primary" v-on:click="getMarca(marca.id)">Detalles</button>
           <button class="btn btn-outline-danger" v-on:click="deleteMarca(marca.id)">Eliminar</button>
         </td>
       </tr>

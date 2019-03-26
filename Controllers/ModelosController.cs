@@ -40,6 +40,21 @@ namespace Prueba_ABM.Controllers
       return Json(modelos);
     }
 
+    public JsonResult apiGETUNIQUE(int id)
+    {
+      var modelos = _context.Modelo
+        .Include("Marca")
+        .Select(m => new
+        {
+          m.Id,
+          marca = m.Marca.Nombre,
+          m.Nombre,
+          m.Descripcion
+        }).Where(m => m.Id == id);
+
+      return Json(modelos);
+    }
+
     [HttpPost]
     public async Task<JsonResult> apiDELETE(int id)
     {
@@ -55,7 +70,10 @@ namespace Prueba_ABM.Controllers
       Modelo modelo = new Modelo(nombre, marca, descripcion);
       _context.Modelo.Add(modelo);
       await _context.SaveChangesAsync();
-      return Json(modelo);
+
+      JsonResult jsmodelo = apiGETUNIQUE(modelo.Id);
+
+      return jsmodelo;
     }
 
     // GET: Modelos/Details/5

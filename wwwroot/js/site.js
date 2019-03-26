@@ -29,22 +29,43 @@ var vm = new Vue({
 
     methods: {
         getMarcas: getMarcas,
+        getMarca: getMarca,
         deleteMarca: deleteMarca,
         agregarMarca: agregarMarca,
 
         getModelos: getModelos,
+        getModelo: getModelo,
         deleteModelo: deleteModelo,
         agregarModelo: agregarModelo,
 
         getAutos: getAutos,
+        getAuto: getAuto,
         deleteAuto: deleteAuto,
         agregarAuto: agregarAuto,
+
+        cancelarNuevo: cancelarNuevo,
 
         modelosFiltrados: function () {
             return data.modelos.filter(mod => mod.marca == data.newAuto.marca)
         }
     }
 })
+
+function cancelarNuevo() {
+    data.newMarca = ''
+
+    data.newModelo = {
+        nombre: '',
+        marca: '',
+        descripcion: ''
+    }
+
+    data.newAuto = {
+        modelo: '',
+        marca: '',
+        precio: ''
+    }
+}
 
 function getAutos() {
     $.ajax({
@@ -62,9 +83,29 @@ function getAutos() {
             console.log(autos);
         },
         error: function (er) {
-            console.log("ERROR POR PARTE DE AJAX: ", er);
+            console.log("AUTOS: ERROR POR PARTE DE AJAX: ", er);
         },
         complete: function (data) {//console.log("Categorias: LISTO.");
+        }
+    })
+}
+
+function getAuto(id) {
+    $.ajax({
+        //pedir galeria de pantallas
+        url: base_url + "/Autos/apiGETUNIQUE/" + id,
+        //app_url_pantallas,
+        method: 'GET',
+        async: true,
+        dataType: 'json',
+        success: function (auto) {
+            data.autos.push(auto[0])
+            console.log(auto[0]);
+        },
+        error: function (er) {
+            console.log("ERROR POR PARTE DE AJAX: ", er);
+        },
+        complete: function (auto) {//console.log("Categorias: LISTO.");
         }
     })
 }
@@ -98,7 +139,7 @@ function agregarAuto(newAuto) {
         async: true,
         dataType: 'json',
         success: function (auto) {
-            data.autos.push(auto)
+            data.autos.push(auto[0])
             data.newAuto = {
                 precio: '',
                 modelo: '',
@@ -137,6 +178,26 @@ function getModelos() {
     })
 }
 
+function getModelo(id) {
+    $.ajax({
+        //pedir galeria de pantallas
+        url: base_url + "/Modelos/apiGETUNIQUE/" + id,
+        //app_url_pantallas,
+        method: 'GET',
+        async: true,
+        dataType: 'json',
+        success: function (modelo) {
+            data.modelos.push(modelo[0])
+            console.log(modelo[0]);
+        },
+        error: function (er) {
+            console.log("ERROR POR PARTE DE AJAX: ", er);
+        },
+        complete: function (data) {//console.log("Categorias: LISTO.");
+        }
+    })
+}
+
 function deleteModelo(id) {
     if (confirm("Eliminar modelo?\nTodos los Autos y Ventas asociados al modelo se eliminarán")) {
         $.ajax({
@@ -166,7 +227,7 @@ function agregarModelo(newModelo) {
         async: true,
         dataType: 'json',
         success: function (modelo) {
-            data.modelos.push(modelo)
+            data.modelos.push(modelo[0])
             data.newModelo = {
                 nombre: '',
                 marca: '',
@@ -200,7 +261,27 @@ function getMarcas() {
         error: function (er) {
             console.log("ERROR POR PARTE DE AJAX: ", er);
         },
-        complete: function (data) {//console.log("Categorias: LISTO.");
+        complete: function (marca) {//console.log("Categorias: LISTO.");
+        }
+    })
+}
+
+function getMarca(id) {
+    $.ajax({
+        //pedir galeria de pantallas
+        url: base_url + "/Marcas/apiGETUNIQUE/" + id,
+        //app_url_pantallas,
+        method: 'GET',
+        async: true,
+        dataType: 'json',
+        success: function (marca) {
+            data.marcas.push(marca)
+            console.log(marca)
+        },
+        error: function (er) {
+            console.log("ERROR POR PARTE DE AJAX: ", er);
+        },
+        complete: function (marca) {//console.log("Categorias: LISTO.");
         }
     })
 }

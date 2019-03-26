@@ -31,6 +31,18 @@ namespace Prueba_ABM.Controllers
       return Json(marcas);
     }
 
+    public async Task<JsonResult> apiGETUNIQUE(int id)
+    {
+      var marca = await _context.Marca
+          .FirstOrDefaultAsync(m => m.Id == id);
+      if (marca == null)
+      {
+        return Json(NotFound());
+      }
+
+      return Json(marca);
+    }
+
     [HttpPost]
     public async Task<JsonResult> apiDELETE(int id)
     {
