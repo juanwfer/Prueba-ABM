@@ -44,6 +44,37 @@ namespace Prueba_ABM.Controllers
     }
 
     [HttpPost]
+    public async Task<JsonResult> apiEDIT(int identificador, string nombre)
+    {
+
+      var marca = await _context.Marca
+          .FirstOrDefaultAsync(m => m.Id == identificador);
+
+      marca.Nombre = nombre;
+
+      //Falta validacion de backend
+
+      try
+      {
+        _context.Update(marca);
+        await _context.SaveChangesAsync();
+      }
+      catch (DbUpdateConcurrencyException)
+      {
+        if (!MarcaExists(marca.Id))
+        {
+          return Json(NotFound());
+        }
+        else
+        {
+          throw;
+        }
+      }
+
+      return await apiGETUNIQUE(identificador);
+    }
+
+    [HttpPost]
     public async Task<JsonResult> apiDELETE(int id)
     {
       var marca = await _context.Marca.FindAsync(id);

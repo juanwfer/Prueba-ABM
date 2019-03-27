@@ -14,20 +14,28 @@
         <th>ACCIÓN</th>
       </tr>
     </thead>
-    <tr>
+    <tr v-show="editMode">
       <td></td>
-      <td><input v-model="newMarca" v-on:keyup.enter="agregarMarca(newMarca)"/></td>
+      <td><input v-model="editMarca.nombre" v-on:keyup.enter="editarMarca(editMarca)" /></td>
+      <td>
+        <button class="btn btn-primary" v-on:click="editarMarca(editMarca)">Guardar</button>
+        <button class="btn btn-secondary" v-on:click="toggleEditMarca()">Cancelar</button>
+      </td>
+    </tr>
+    <tr v-show="!editMode">
+      <td></td>
+      <td><input v-model="newMarca" v-on:keyup.enter="agregarMarca(newMarca)" /></td>
       <td>
         <button class="btn btn-primary" v-on:click="agregarMarca(newMarca)">Agregar</button>
         <button class="btn btn-secondary" v-on:click="cancelarNuevo()">Cancelar</button>
       </td>
     </tr>
-    <tbody v-for="marca in marcas">
+    <tbody v-for="marca in marcas" v-show="!editMode">
       <tr>
         <td> {{ marca.id }} </td>
         <td> {{ marca.nombre }} </td>
         <td>
-          <button class="btn btn-outline-secondary">Editar</button>
+          <button class="btn btn-outline-secondary" v-on:click="toggleEditMarca(marca)">Editar</button>
           <button class="btn btn-outline-primary" v-on:click="getMarca(marca.id)">Detalles</button>
           <button class="btn btn-outline-danger" v-on:click="deleteMarca(marca.id)">Eliminar</button>
         </td>

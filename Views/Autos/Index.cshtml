@@ -17,7 +17,28 @@
         <th>ACCIÓN</th>
       </tr>
     </thead>
-    <tr>
+    <tr v-show="editMode">
+      <td></td>
+      <td><input v-model="editAuto.precio" type="number" /></td>
+      <td>
+        <select v-model="editAuto.marca">
+          <option v-for="marca in marcas" v-bind:value="marca.nombre"> {{ marca.nombre }}</option>
+        </select>
+      </td>
+      <td>
+        <select v-model="editAuto.modeloId">
+          <option v-for="modelo in modelosFiltradosEdit()" v-bind:value="modelo.id">
+            {{ modelo.nombre }}
+          </option>
+        </select>
+      </td>
+      <td><input type="date" v-model="editAuto.fecha"/></td>
+      <td>
+        <button class="btn btn-primary" v-on:click="editarAuto(editAuto)">Guardar</button>
+        <button class="btn btn-secondary" v-on:click="toggleEditAuto()">Cancelar</button>
+      </td>
+    </tr>
+    <tr v-show="!editMode">
       <td></td>
       <td><input v-model="newAuto.precio" type="number" /></td>
       <td>
@@ -26,27 +47,27 @@
         </select>
       </td>
       <td>
-        <select v-model="newAuto.modelo">
+        <select v-model="newAuto.modeloId">
           <option v-for="modelo in modelosFiltrados()" v-bind:value="modelo.id">
             {{ modelo.nombre }}
           </option>
         </select>
       </td>
-      <td></td>
+      <td><input type="date" v-model="newAuto.fecha"/></td>
       <td>
         <button class="btn btn-primary" v-on:click="agregarAuto(newAuto)">Agregar</button>
         <button class="btn btn-secondary" v-on:click="cancelarNuevo()">Cancelar</button>
       </td>
     </tr>
-    <tbody v-for="auto in autos">
+    <tbody v-for="auto in autos" v-show="!editMode">
       <tr>
         <td> {{ auto.id }}</td>
         <td> {{ auto.precio }}</td>
         <td> {{ auto.marca }}</td>
         <td> {{ auto.modelo }}</td>
-        <td> {{ auto.fecha_adquisicion }}</td>
+        <td> {{ auto.fecha }}</td>
         <td>
-          <button class="btn btn-outline-secondary">Editar</button>
+          <button class="btn btn-outline-secondary" v-on:click="toggleEditAuto(auto)">Editar</button>
           <button class="btn btn-outline-primary" v-on:click="getAuto(auto.id)">Detalles</button>
           <button class="btn btn-outline-danger" v-on:click="deleteAuto(auto.id)">Eliminar</button>
         </td>

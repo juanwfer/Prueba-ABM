@@ -13,13 +13,12 @@ var data = {
     editMode: false,
 
     newMarca: '',
-    editMarca: '',
+    editMarca: {},
 
     newModelo: {
         nombre: '',
         marca: '',
-        descripcion: '',
-        editando: false
+        descripcion: ''
     },
 
     editModelo: {
@@ -31,8 +30,7 @@ var data = {
     newAuto: {
         modelo: '',
         marca: '',
-        precio: '',
-        editando: false
+        precio: ''
     },
 
     editAuto: {
@@ -51,11 +49,16 @@ var vm = new Vue({
 
         toggleEditModelo: toggleEditModelo,
 
+        toggleEditMarca: toggleEditMarca,
+
+        toggleEditAuto: toggleEditAuto,
+
 
         getMarcas: getMarcas,
         getMarca: getMarca,
         deleteMarca: deleteMarca,
         agregarMarca: agregarMarca,
+        editarMarca: editarMarca,
 
         getModelos: getModelos,
         getModelo: getModelo,
@@ -67,11 +70,16 @@ var vm = new Vue({
         getAuto: getAuto,
         deleteAuto: deleteAuto,
         agregarAuto: agregarAuto,
+        editarAuto: editarAuto,
 
         cancelarNuevo: cancelarNuevo,
 
         modelosFiltrados: function () {
             return data.modelos.filter(mod => mod.marca == data.newAuto.marca)
+        },
+
+        modelosFiltradosEdit: function () {
+            return data.modelos.filter(mod => mod.marca == data.editAuto.marca)
         }
     }
 })
@@ -80,6 +88,22 @@ function toggleEditModelo(modelo) {
     data.editMode = !data.editMode
     if (data.editMode) {
         Object.assign(data.editModelo, modelo)
+    }
+}
+
+function toggleEditMarca(marca) {
+    data.editMode = !data.editMode
+    if (data.editMode) {
+        Object.assign(data.editMarca, marca)
+    }
+}
+
+function toggleEditAuto(auto) {
+    data.editMode = !data.editMode
+    if (data.editMode) {
+        Object.assign(data.editAuto, auto)
+        data.editAuto.fecha = new Date(data.editAuto.fecha).toISOString().split('T')[0]
+        console.log(data.editAuto.fecha)
     }
 }
 
@@ -110,6 +134,7 @@ function getAutos() {
         success: function (autos) {
             data.autos = [];
             autos.forEach((auto) => {
+                auto.fecha = new Date(auto.fecha).toDateString()
                 data.autos.push(auto)
             })
             console.log(autos);
@@ -166,18 +191,37 @@ function deleteAuto(id) {
 
 function agregarAuto(newAuto) {
     $.ajax({
-        url: base_url + "/Autos/apiCREATE?precio=" + newAuto.precio + "&modelo=" + newAuto.modelo,
+        url: base_url + "/Autos/apiCREATE?precio=" + newAuto.precio + "&modelo=" + newAuto.modeloId + "&fecha=" + newAuto.fecha,
         method: 'POST',
         async: true,
         dataType: 'json',
         success: function (auto) {
+            auto[0].fecha = new Date(auto[0].fecha).toDateString()
             data.autos.push(auto[0])
             data.newAuto = {
                 precio: '',
                 modelo: '',
-                marca: '',
-                editando: false
+                marca: ''
             }
+        },
+        error: function (er) {
+            console.log("ERROR", er)
+        },
+        complete: function (auto) {
+
+        }
+    })
+}
+
+function editarAuto(auto) {
+    $.ajax({
+        url: base_url + "/Autos/apiEDIT?identificador=" + auto.id + "&precio=" + auto.precio + "&modelo=" + auto.modeloId + "&fecha=" + auto.fecha,
+        method: 'POST',
+        async: true,
+        dataType: 'json',
+        success: function (auto) {
+            data.editMode = false;
+            getAutos()
         },
         error: function (er) {
             console.log("ERROR", er)
@@ -285,12 +329,12 @@ function editarModelo(modelo) {
         dataType: 'json',
         success: function (modelo) {
             data.editMode = false;
+            getModelos()
         },
         error: function (er) {
             console.log("ERROR", er)
         },
         complete: function (modelo) {
-            getModelos()
         }
     })
 }
@@ -375,6 +419,24 @@ function agregarMarca(nombre) {
         },
         complete: function (marca) {
 
+        }
+    })
+}
+
+function editarMarca(marca) {
+    $.ajax({
+        url: base_url + "/Marcas/apiEDIT?identificador=" + marca.id + "&nombre=" + marca.nombre,
+        method: 'POST',
+        async: true,
+        dataType: 'json',
+        success: function (marca) {
+            data.editMode = false;
+            getMarcas()
+        },
+        error: function (er) {
+            console.log("ERROR", er)
+        },
+        complete: function (marca) {
         }
     })
 }

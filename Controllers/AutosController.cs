@@ -31,26 +31,30 @@ namespace Prueba_ABM.Controllers
         .Select(a => new
         {
           a.Id,
+          marcaId = a.Modelo.Marca.Id,
           marca = a.Modelo.Marca.Nombre,
+          modeloId = a.Modelo.Id,
           modelo = a.Modelo.Nombre,
           a.Precio,
-          fecha_adquisicion = a.FechaAdquisicion
+          fecha = a.FechaAdquisicion
         });
 
       return Json(autos);
     }
 
-    public async Task<JsonResult> apiGETUNIQUE(int id)
+    public JsonResult apiGETUNIQUE(int id)
     {
       var auto = _context.Auto
         .Include("Modelo.Marca")
         .Select(a => new
         {
           a.Id,
+          marcaId = a.Modelo.Marca.Id,
           marca = a.Modelo.Marca.Nombre,
+          modeloId = a.Modelo.Id,
           modelo = a.Modelo.Nombre,
           a.Precio,
-          fecha_adquisicion = a.FechaAdquisicion
+          fecha = a.FechaAdquisicion
         }).Where(a => a.Id == id);
 
       if (auto == null)
@@ -70,16 +74,48 @@ namespace Prueba_ABM.Controllers
       return Json("OK");
     }
 
-    public async Task<JsonResult> apiCREATE(decimal precio, int modelo)
+    public async Task<JsonResult> apiCREATE(decimal precio, int modelo, DateTime fecha)
     {
-      DateTime fecha = DateTime.Now;
       Auto auto = new Auto(precio, modelo, fecha);
       _context.Auto.Add(auto);
       await _context.SaveChangesAsync();
 
-      JsonResult jsauto = await apiGETUNIQUE(auto.Id);
+      JsonResult jsauto = apiGETUNIQUE(auto.Id);
 
       return jsauto;
+    }
+
+    [HttpPost]
+    public async Task<JsonResult> apiEDIT(int identificador, int precio, int modelo, DateTime fecha)
+    {
+
+      var auto = await _context.Auto
+          .FirstOrDefaultAsync(a => a.Id == identificador);
+
+      auto.Precio = precio;
+      auto.ModeloId = modelo;
+      auto.FechaAdquisicion = fecha;
+
+      //Falta validacion de backend
+
+      try
+      {
+        _context.Update(auto);
+        await _context.SaveChangesAsync();
+      }
+      catch (DbUpdateConcurrencyException)
+      {
+        if (!AutoExists(auto.Id))
+        {
+          return Json(NotFound());
+        }
+        else
+        {
+          throw;
+        }
+      }
+
+      return apiGETUNIQUE(identificador);
     }
 
     // GET: Autos/Details/5
