@@ -5,7 +5,6 @@ C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\bin\Release\netcoreapp2.2\Prue
 C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\bin\Release\netcoreapp2.2\Prueba ABM.pdb
 C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\bin\Release\netcoreapp2.2\Prueba ABM.Views.dll
 C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\bin\Release\netcoreapp2.2\Prueba ABM.Views.pdb
-C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Release\netcoreapp2.2\Prueba ABM.csprojAssemblyReference.cache
 C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Release\netcoreapp2.2\Prueba ABM.csproj.CoreCompileInputs.cache
 C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Release\netcoreapp2.2\Prueba ABM.RazorAssemblyInfo.cache
 C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Release\netcoreapp2.2\Prueba ABM.RazorAssemblyInfo.cs
@@ -58,3 +57,4 @@ C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Release\netcoreapp2.2\Prue
 C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Release\netcoreapp2.2\Prueba ABM.dll
 C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Release\netcoreapp2.2\Prueba ABM.pdb
 C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Release\netcoreapp2.2\Prueba ABM.csproj.CopyComplete
+C:\Users\juan_\source\repos\Prueba ABM\Prueba ABM\obj\Release\netcoreapp2.2\Prueba ABM.csprojAssemblyReference.cache

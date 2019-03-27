@@ -1,41 +1,60 @@
-﻿@model IEnumerable<Prueba_ABM.Models.Modelo>
-
-@{
-    ViewData["Title"] = "Index";
+﻿@{
+  ViewData["Title"] = "Modelos";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<h1>Modelos de autos en el sistema</h1>
+<br />
+<br />
+<div id="testVue">
+  <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
-            <th></th>
-        </tr>
+      <tr>
+        <th>ID</th>
+        <th>MARCA</th>
+        <th>MODELO</th>
+        <th>DESCRIPCIÓN</th>
+        <th>ACCIÓN</th>
+      </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+    <tr v-show="editMode">
+      <td></td>
+      <td>
+        <select v-model="editModelo.marcaId">
+          <option v-for="marca in marcas" v-bind:value="marca.id"> {{ marca.nombre }}</option>
+        </select>
+      </td>
+      <td><input v-model="editModelo.nombre" /></td>
+      <td><input v-model="editModelo.descripcion" v-on:keyup.enter="editarModelo(editModelo)" /></td>
+      <td>
+        <button class="btn btn-primary" v-on:click="editarModelo(editModelo)">Guardar</button>
+        <button class="btn btn-secondary" v-on:click="toggleEditModelo()">Cancelar</button>
+      </td>
+    </tr>
+    <tr v-show="!editMode">
+      <td></td>
+      <td>
+        <select v-model="newModelo.marca">
+          <option v-for="marca in marcas" v-bind:value="marca.id"> {{ marca.nombre }}</option>
+        </select>
+      </td>
+      <td><input v-model="newModelo.nombre" /></td>
+      <td><input v-model="newModelo.descripcion" v-on:keyup.enter="agregarModelo(newModelo)" /></td>
+      <td>
+        <button class="btn btn-primary" v-on:click="agregarModelo(newModelo)">Guardar</button>
+        <button class="btn btn-secondary" v-on:click="cancelarNuevo()">Cancelar</button>
+      </td>
+    </tr>
+    <tbody v-for="modelo in modelos" v-show="!editMode">
+      <tr>
+        <td> {{ modelo.id }}</td>
+        <td> {{ modelo.marca }}</td>
+        <td> {{ modelo.nombre }}</td>
+        <td> {{ modelo.descripcion }}</td>
+        <td>
+          <button class="btn btn-outline-secondary" v-on:click="toggleEditModelo(modelo)">Editar</button>
+          <button class="btn btn-outline-danger" v-on:click="deleteModelo(modelo.id)">Eliminar</button>
+        </td>
+      </tr>
     </tbody>
-</table>
+  </table>
+</div>

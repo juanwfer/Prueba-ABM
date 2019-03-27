@@ -1,35 +1,44 @@
-﻿@model IEnumerable<Prueba_ABM.Models.Marca>
-
-@{
-    ViewData["Title"] = "Index";
+﻿@{
+  ViewData["Title"] = "Marcas";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<h1>Marcas de autos en el sistema</h1>
+<br />
+<br />
+<div id="testVue">
+  <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th></th>
-        </tr>
+      <tr>
+        <th>ID</th>
+        <th>NOMBRE</th>
+        <th>ACCIÓN</th>
+      </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+    <tr v-show="editMode">
+      <td></td>
+      <td><input v-model="editMarca.nombre" v-on:keyup.enter="editarMarca(editMarca)" /></td>
+      <td>
+        <button class="btn btn-primary" v-on:click="editarMarca(editMarca)">Guardar</button>
+        <button class="btn btn-secondary" v-on:click="toggleEditMarca()">Cancelar</button>
+      </td>
+    </tr>
+    <tr v-show="!editMode">
+      <td></td>
+      <td><input v-model="newMarca" v-on:keyup.enter="agregarMarca(newMarca)" /></td>
+      <td>
+        <button class="btn btn-primary" v-on:click="agregarMarca(newMarca)">Agregar</button>
+        <button class="btn btn-secondary" v-on:click="cancelarNuevo()">Cancelar</button>
+      </td>
+    </tr>
+    <tbody v-for="marca in marcas" v-show="!editMode">
+      <tr>
+        <td> {{ marca.id }} </td>
+        <td> {{ marca.nombre }} </td>
+        <td>
+          <button class="btn btn-outline-secondary" v-on:click="toggleEditMarca(marca)">Editar</button>
+          <button class="btn btn-outline-danger" v-on:click="deleteMarca(marca.id)">Eliminar</button>
+        </td>
+      </tr>
     </tbody>
-</table>
+  </table>
+</div>
