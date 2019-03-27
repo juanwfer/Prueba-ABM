@@ -15,7 +15,7 @@
       </tr>
     </thead>
     <tr v-show="editMode">
-      <td></td>
+      <td> {{ editMarca.id }} </td>
       <td><input v-model="editMarca.nombre" v-on:keyup.enter="editarMarca(editMarca)" /></td>
       <td>
         <button class="btn btn-primary" v-on:click="editarMarca(editMarca)">Guardar</button>

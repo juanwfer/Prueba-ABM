@@ -18,7 +18,7 @@
       </tr>
     </thead>
     <tr v-show="editMode">
-      <td></td>
+      <td>{{ editAuto.id }}</td>
       <td><input v-model="editAuto.precio" type="number" /></td>
       <td>
         <select v-model="editAuto.marca">

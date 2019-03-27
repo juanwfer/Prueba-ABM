@@ -17,7 +17,7 @@
       </tr>
     </thead>
     <tr v-show="editMode">
-      <td></td>
+      <td> {{ editModelo.id }} </td>
       <td>
         <select v-model="editModelo.marcaId">
           <option v-for="marca in marcas" v-bind:value="marca.id"> {{ marca.nombre }}</option>
