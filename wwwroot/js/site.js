@@ -168,7 +168,7 @@ function getAuto(id) {
 }
 
 function deleteAuto(id) {
-    if (confirm("Eliminar auto?\nTodas las Ventas asociados al auto se eliminarán")) {
+    if (confirm("Eliminar auto?")) {
         $.ajax({
             url: base_url + "/Autos/apiDELETE/" + id,
             method: 'POST',
@@ -276,7 +276,7 @@ function getModelo(id) {
 }
 
 function deleteModelo(id) {
-    if (confirm("Eliminar modelo?\nTodos los Autos y Ventas asociados al modelo se eliminarán")) {
+    if (confirm("Eliminar modelo?\nTodos los Autos asociados al modelo se eliminarán")) {
         $.ajax({
             url: base_url + "/Modelos/apiDELETE/" + id,
             method: 'POST',
@@ -383,7 +383,7 @@ function getMarca(id) {
 }
 
 function deleteMarca(id) {
-    if (confirm("Eliminar marca?\nTodos los Modelos, Autos y Ventas asociados a la marca se eliminarán")) {
+    if (confirm("Eliminar marca?\nTodos los Modelos y Autos asociados a la marca se eliminarán")) {
         $.ajax({
             url: base_url + "/Marcas/apiDELETE/" + id,
             method: 'POST',
